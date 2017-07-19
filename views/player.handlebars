@@ -55,7 +55,7 @@
             <div class="col-lg-6">
                 <!-- START panel-->
                 <div class="panel-charttop panel panel-default" id = 'tdPanel'>
-                    <div class="panel-heading"><h4>Touchdowns</h4></div>
+                    <div class="panel-heading"><h4 id="headLabel1"></h4></div>
                     <div class="panel-body">
                         <canvas id = "firstChart" height = "400" width = "400" ></canvas>
                     </div>
@@ -68,7 +68,7 @@
                 <div class="col-lg-6">
                     <!-- START panel-->
                     <div class="panel-charttop panel panel-default" id = 'passingPanel'>
-                        <div class="panel-heading"><h4>Passing Rating</h4></div>
+                        <div class="panel-heading"><h4 id="headLabel2"></h4></div>
                         <div class="panel-body">
                             <canvas id = "secondChart" height = "400" width = "400"></canvas>
                         </div>
@@ -84,7 +84,7 @@
             <div class="col-lg-6">
                 <!-- START panel-->
                 <div class="panel panel-default" id = "ppgPanel">
-                    <div class="panel-heading"><h4>Yards Per Game</h4></div>
+                    <div class="panel-heading"><h4 id="headLabel3"></h4></div>
                     <div class="panel-body">
                         <canvas id = "thirdChart" height = "400" width = "400"></canvas>
                     </div>
@@ -97,7 +97,7 @@
             <div class="col-lg-6">
                 <!-- START panel-->
                 <div class="panel panel-default" id = "interceptionPanel">
-                    <div class="panel-heading"><h4>Interceptions</h4></div>
+                    <div class="panel-heading"><h4 id="headLabel4"></h4></div>
                     <div class="panel-body">
                         <canvas id = "fourthChart" height = "400" width = '400'></canvas>
                     </div>
@@ -188,30 +188,45 @@ if("{{this.playerName}}" === "Sorry, player not found. Please enter valid player
             data2.push({{this.Yards}})
             data3.push({{this.YPG}})
             data4.push({{this.Receptions}})
-            var label1 = "Touch Downs";
-            var label2 = "Total Receiving Yards";
-            var label3 = "Yard Per Game";
-            var label4 = "Receptions" ;
+            label1 = "Touch Downs";
+            label2 = "Total Receiving Yards";
+            label3 = "Yard Per Game";
+            label4 = "Receptions" ;
         }else if("{{this.Position}}" === "Quarterback"){
             data1.push({{this.TD}})
             data2.push({{this.PasserRating}})
             data3.push({{this.YPG}})
             data4.push({{this.Interception}})
-            var label1 = "Touch Downs";
-            var label2 = "Passer Rating";
-            var label3 = "Yard Per Game";
-            var label4 = "Interception" ;
+            label1 = "Touch Downs";
+            label2 = "Passer Rating";
+            label3 = "Yard Per Game";
+            label4 = "Interception" ;
+
         }else if("{{this.Position}}" === "Running Back"){
             data1.push({{this.TD}})
             data2.push({{this.YPG}})
             data3.push({{this.RushAttempts}})
             data4.push({{this.AvgYards}})
-            var label1 = "Touch Downs";
-            var label2 = "Yard Per Game";
-            var label3 = "Rushing Attempts";
-            var label4 = "Average Yards Per Carry" ;
+            label1 = "Touch Downs";
+            label2 = "Yard Per Game";
+            label3 = "Rushing Attempts";
+            label4 = "Average Yards Per Carry" ;
+        }else if("{{this.Position}}" === "Tight End"){
+            data1.push({{this.TD}})
+            data2.push({{this.Yards}})
+            data3.push({{this.YPG}})
+            data4.push({{this.Receptions}})
+            label1 = "Touch Downs";
+            label2 = "Total Receiving Yards";
+            label3 = "Yard Per Game";
+            label4 = "Receptions" ;
         }
+
         {{/each}}
+            $("#headLabel1").html(label1);
+            $("#headLabel2").html(label2);
+            $("#headLabel3").html(label3);
+            $("#headLabel4").html(label4);
     console.log(data1);
     console.log(data2);
     console.log(data3);
