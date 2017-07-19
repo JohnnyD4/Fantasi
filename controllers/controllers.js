@@ -8,6 +8,7 @@ var sessionStore = require("../config/connection.js")['sessionStore'];
 var models = require("../models/models.js");
 
 var favData;
+var rankCategory;
 
 router.get("/", function(req, res) {
   
@@ -54,6 +55,8 @@ router.post("/position/:position/:year", function(req, res) {
 			rankCategory = "Rushing";
 		}else if(inputPosition === "Wide Receiver"){
 			rankCategory = "Receiving";
+		}else if(inputPosition === "Tight End"){
+			rankCategory = "Receiving";
 		}
 
 		models.ranking(
@@ -72,7 +75,7 @@ router.post("/position/:position/:year", function(req, res) {
 			  		favTeams: splitTeamFavs
 		  		}
 
-		  		if(data === "Please enter Running Back, Quarterback, or Wide Receiver"){
+		  		if(data === "Please enter Running Back, Quarterback, Wide Receiver, or Tight End"){
 			  			
 		  			res.render("position", {Player:data})
 
@@ -126,6 +129,8 @@ router.post("/position", function(req, res) {
 				rankCategory = "Rushing";
 			}else if(positionSearch === "Wide Receiver"){
 				rankCategory = "Receiving";
+			}else if(positionSearch === "Tight End"){
+				rankCategory = "Receiving";
 			}
 	
 		models.ranking(
@@ -144,7 +149,7 @@ router.post("/position", function(req, res) {
 
 		  		console.log("data 50", data);
 
-		  		if(data === "Please enter Running Back, Quarterback, or Wide Receiver"){
+		  		if(data === "Please enter Running Back, Quarterback, Wide Receiver, or Tight End"){
 			  			var errorPack = {
 	  					userInfo: favData,
 	  					pos: data,
@@ -452,7 +457,6 @@ router.get("/team/:team", function(req, res) {
 	  		}else{
 	  			res.render("team", dataPack);
 	  		}
-
 	  });
 	});		
 	
