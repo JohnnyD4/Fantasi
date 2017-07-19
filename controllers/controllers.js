@@ -8,14 +8,7 @@ var sessionStore = require("../config/connection.js")['sessionStore'];
 var models = require("../models/models.js");
 
 var favData;
-
-var rankPosition = "Quarterback",
-	rankYear = "2016",
-	rankCategory,
-	playerToSearch = "Tom Brady",
-	testFav = "Tom Brady",
-	testid = "3",
-	teamToSearch = "Miami Dolphins";
+var rankCategory;
 
 router.get("/", function(req, res) {
   
@@ -23,9 +16,7 @@ router.get("/", function(req, res) {
 });
 
 router.post("/login", function(req, res) {
-	
-	console.log(req.session);
-	
+
 	models.loginAs(
 
 		[req.body.emailAddress],
@@ -33,11 +24,7 @@ router.post("/login", function(req, res) {
 
 		function(data) {
 
-			console.log("line 29", data);
-
 			req.session.userID = data.id;
-
-			console.log(req.session.userID);
 
 			if(data === "Sorry email and password do not match"){
 
@@ -68,6 +55,8 @@ router.post("/position/:position/:year", function(req, res) {
 			rankCategory = "Rushing";
 		}else if(inputPosition === "Wide Receiver"){
 			rankCategory = "Receiving";
+		}else if(inputPosition === "Tight End"){
+			rankCategory = "Receiving";
 		}
 
 		models.ranking(
@@ -86,7 +75,7 @@ router.post("/position/:position/:year", function(req, res) {
 			  		favTeams: splitTeamFavs
 		  		}
 
-		  		if(data === "Please enter Running Back, Quarterback, or Wide Receiver"){
+		  		if(data === "Please enter Running Back, Quarterback, Wide Receiver, or Tight End"){
 			  			
 		  			res.render("position", {Player:data})
 
@@ -140,6 +129,8 @@ router.post("/position", function(req, res) {
 				rankCategory = "Rushing";
 			}else if(positionSearch === "Wide Receiver"){
 				rankCategory = "Receiving";
+			}else if(positionSearch === "Tight End"){
+				rankCategory = "Receiving";
 			}
 	
 		models.ranking(
@@ -158,7 +149,7 @@ router.post("/position", function(req, res) {
 
 		  		console.log("data 50", data);
 
-		  		if(data === "Please enter Running Back, Quarterback, or Wide Receiver"){
+		  		if(data === "Please enter Running Back, Quarterback, Wide Receiver, or Tight End"){
 			  			var errorPack = {
 	  					userInfo: favData,
 	  					pos: data,
@@ -225,8 +216,6 @@ router.post("/player", function(req, res) {
 	  	
 router.post("/addPlayer", function(req,res){
 
-	console.log('Controller 155');
-
 	models.addPlayer(
 		["favorite_players", "id"],
 		[testFav, req.session.userID],
@@ -237,8 +226,6 @@ router.post("/addPlayer", function(req,res){
 
 
 router.post("/addTeam/:team/", function(req,res){	
-		
-	console.log("team params:", req.params.team);
 
 	models.addTeam(
 		["favorite_teams", "id"],
@@ -280,10 +267,6 @@ router.post("/addTeam/:team/", function(req,res){
 });
 
 router.post("/addPlayer/:player/", function(req,res){
-
-	
-		
-	console.log("team params:", req.params.player);
 
 	models.addPlayer(
 		["favorite_players", "id"],
@@ -379,7 +362,7 @@ router.post("/signup", function(req, res) {
 		[req.body.password],
 		function(data) {
 
-			console.log(data);
+			console.log("new user id", data);
 
 			if(data == "Email already exists"){
 
@@ -387,7 +370,9 @@ router.post("/signup", function(req, res) {
 
 			}else{
 
-				res.redirect("/login");
+				req.session.userID = data;
+
+				res.redirect("/profile");
 			}
 		});	
 });
@@ -399,6 +384,8 @@ router.get("/signup", function(req, res) {
 
 router.get("/logout", function(req, res){
 
+	req.session.userID = "";
+	
 	res.redirect("/");
 });
 
@@ -470,7 +457,6 @@ router.get("/team/:team", function(req, res) {
 	  		}else{
 	  			res.render("team", dataPack);
 	  		}
-
 	  });
 	});		
 	

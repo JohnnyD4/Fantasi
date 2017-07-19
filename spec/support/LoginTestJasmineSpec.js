@@ -1,23 +1,22 @@
-// "use strict"
+"use strict";
 
 var Nightmare = require("nightmare");
 var nightmare = Nightmare({ show: true });
 
-/*// describes our function
+// describes our function
 describe("Fantasi", function() {
 // holds our ids in variables
 // Initial test using Jasmine
   it("should log you in", function(done) {
-    // ID for the login button.*/
- /* var login = "#login";
-  var email = "#exampleInputEmail1";
-  var password = "#exampleInputPassword1";*/
+    // ID for the login button.
+  // var login = "#login";
+  // var email = "#exampleInputEmail1";
+  // var password = "#exampleInputPassword1";
 
-  // nightmare
+  nightmare
       .goto("http://localhost:3000/")
-      .wait(4000)
       // Click the login button
-      // .wait('#login')
+      .wait(4000)
       // .click('#login')
       // .wait('#exampleInputEmail1')
       // .wait(1000) // wait for the animation
@@ -39,9 +38,9 @@ describe("Fantasi", function() {
       // .catch(function(error) {
       //   console.error('Search failed:', error);
       // });
-/*    });
+    });
 });
-*/
+
 
 
 

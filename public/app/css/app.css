@@ -638,6 +638,18 @@ body {
 /* ========================================================================
    Component: typo.less
  ========================================================================== */
+.rank {
+  margin-left: 30px;
+}
+
+.position {
+  margin-bottom: 20px;
+}
+
+.rankingname {
+  color: #CA3639
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   color: #656565;
@@ -645,12 +657,6 @@ body {
 h1,
 h2,
 h3,
-
-
-.rank {
-  margin-left: 30px;
-}
-
 h4 {
   display:inline;
   font-weight: bold;
@@ -1101,6 +1107,10 @@ fieldset[disabled] .btn-pink.active {
 /* ========================================================================
    Component: panels.less
  ========================================================================== */
+.formranking{
+  margin-top: 30px;
+}
+
 .formnew{
   margin-bottom: 20px;
 }
@@ -4346,7 +4356,8 @@ html.markdownarea-fullscreen,
  ========================================================================== */
 .table > thead > tr > th {
   padding: 14px 8px;
-  color: #888;
+  font-size: 16px;
+  color: #CA3639;
 }
 .table > tbody > tr > td {
   vertical-align: middle;
@@ -4356,6 +4367,7 @@ html.markdownarea-fullscreen,
   height: 36px;
   margin: 0 auto;
 }
+
 .table .checkbox {
   margin: 0 auto;
   width: 20px;

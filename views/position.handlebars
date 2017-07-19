@@ -21,16 +21,16 @@
     <!-- START Page content-->
     <section class="main-content" id = 'mainSection'>
 
-    	<h2>{{this.pos}}</h2>
-
-    	<h3>| Rankings</h3>
-        <h3>| {{this.year}}</h3>
+    	<h2 class="position">{{this.pos}}</h2>
+        <br>
+    	<h3>Rankings:</h3>
+        <h3>{{this.year}}</h3>
 
 
     	<!-- START Year Buttons -->
     	<div class="row">
     		<div class="col-sm-4">
-        <form class="formnew"  method="post" action="/position/{{this.pos}}/2014">
+        <form class="formranking formnew"  method="post" action="/position/{{this.pos}}/2014">
 	        <input id="fourInput" type="hidden" name="year" value="2014">
     			<button class="btn btn-default" data-toggle="play-animation" data-play="fadeInLeft" data-offset="0" data-delay="1400" class="panel widget button">
                     <strong>2014</strong>
@@ -38,7 +38,7 @@
         </form>  
     		</div>
     		<div class="col-sm-4">
-        <form class="formnew" method="post" action="/position/{{this.pos}}/2015">
+        <form class="formranking formnew" method="post" action="/position/{{this.pos}}/2015">
 	        <input id="fiveInput" type="hidden" name="year" value="2015">
     			<button class="btn btn-default" data-toggle="play-animation" data-play="fadeInLeft" data-offset="0" data-delay="1400" class="panel widget button">
                     <strong>2015</strong>
@@ -46,7 +46,7 @@
         </form>  
     		</div>
     		<div class="col-sm-4">
-        <form class="formnew" method="post" action="/position/{{this.pos}}/2016">
+        <form class="formranking formnew" method="post" action="/position/{{this.pos}}/2016">
 	        <input id="sixInput" type="hidden" name="year" value="2016">
     			<button class="btn btn-default" data-toggle="play-animation" data-play="fadeInLeft" data-offset="0" data-delay="1400" class="panel widget button">
                     <strong>2016</strong>
@@ -64,7 +64,7 @@
                         <table id="datatable2" class="table table-striped table-hover">
                             <thead>
                             <tr>
-                                <th>Rank</th>
+                                <th class="rankingname">Rank</th>
                                 <th>Name</th>
                                 <th>Team</th>
                             </tr>

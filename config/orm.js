@@ -11,7 +11,7 @@ var orm = {
     for( var i = 0; i < cols.length; i++){
       queryString += cols[i] + " = " + "\"" + vals[i] + "\"" + " AND "
     }
-    queryString += "`Season Type` = 'Regular Season' AND `Time` =" + year + " AND `Rank` < 21 ORDER BY `Rank` ASC;";
+    queryString += "`Season Type` = 'Regular Season' AND `Time` =" + year + " ORDER BY `Rank` ASC LIMIT 20;";
     
     console.log(queryString); 
 
@@ -66,6 +66,10 @@ var orm = {
             var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`,`Touch Downs` AS TD, `Yards_Per_Game_Average` AS YPG, `Attempts_Per_Game` AS RushAttempts, `Average_Yards` AS AvgYards, `Time` FROM " + table;
            
           }else if(result[0].Position === "Wide Receiver"){
+            var category = "Receiving";
+            var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`, `Touch Downs` AS TD, `Yards`, `Yards_Per_Game_Average` AS YPG, `Receptions`, `Time` FROM " + table;
+          
+          }else if(result[0].Position === "Tight End"){
             var category = "Receiving";
             var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`, `Touch Downs` AS TD, `Yards`, `Yards_Per_Game_Average` AS YPG, `Receptions`, `Time` FROM " + table;
           }
@@ -199,6 +203,10 @@ var orm = {
                       }else if(result[0].Position === "Wide Receiver"){
                         var category = "Receiving";
                         var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`, `Touch Downs` AS TD, `Yards`, `Yards_Per_Game_Average` AS YPG, `Receptions`, `Time` FROM `nfl`";
+                      
+                      }else if(result[0].Position === "Tight End"){
+                        var category = "Receiving";
+                        var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`, `Touch Downs` AS TD, `Yards`, `Yards_Per_Game_Average` AS YPG, `Receptions`, `Time` FROM `nfl`";
                       }
 
                       queryString += " WHERE ";   
@@ -253,6 +261,10 @@ var orm = {
                         var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`,`Touch Downs` AS TD, `Yards_Per_Game_Average` AS YPG, `Attempts_Per_Game` AS RushAttempts, `Average_Yards` AS AvgYards, `Time` FROM `nfl`";
                        
                       }else if(result[0].Position === "Wide Receiver"){
+                        var category = "Receiving";
+                        var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`, `Touch Downs` AS TD, `Yards`, `Yards_Per_Game_Average` AS YPG, `Receptions`, `Time` FROM `nfl`";
+                      
+                      }else if(result[0].Position === "Tight End"){
                         var category = "Receiving";
                         var queryString = "SELECT `Player`, `Team`, `Position`, `Rank`, `Touch Downs` AS TD, `Yards`, `Yards_Per_Game_Average` AS YPG, `Receptions`, `Time` FROM `nfl`";
                       }
@@ -349,6 +361,7 @@ var orm = {
               if (err) throw err;
              
               cb(result[0].id);
+              console.log("id of new user in orm", result[0].id);
             });
 
             
@@ -433,6 +446,7 @@ var orm = {
   },
 
   uploadPhoto : function(table, cols, vals, cb){
+
     var queryString = "UPDATE " + table + " SET " + cols[0] + " = '" + vals[0] + "' WHERE " + cols[1] + " = " + vals[1] + ";";
 
    console.log(queryString);
