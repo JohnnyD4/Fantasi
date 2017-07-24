@@ -3068,7 +3068,7 @@ select[multiple].input-lg {
 .btn:hover,
 .btn:focus,
 .btn.focus {
-  color: #333333;
+  color: #FFFFFF;
   text-decoration: none;
 }
 .btn:active,
@@ -3163,7 +3163,9 @@ fieldset[disabled] .btn-default.active {
     border-color: #CB2F2F;
 }
 
-.btn-espnred:focus,
+.btn-espnred:focus,{
+  color: #ffffff;
+}
 .btn-espnred.focus {
     color: #ffffff;
     background-color: #CB2F2F;
@@ -5569,20 +5571,22 @@ button.list-group-item-danger.active:focus {
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
-.panel-body {
-  padding: 15px;
-}
 
-.panel-playerbody {
-  padding: 10px;
-}
-
-.panel-player {
-  padding: 5px 15px;
+.panel-heading-player {
+  padding: 10px 15px;
   border-bottom: 1px solid transparent;
   border-top-right-radius: 3px;
   border-top-left-radius: 3px;
 }
+
+.panel-playerbody {
+  padding: 1px 10px;
+}
+
+.panel-body {
+  padding: 15px;
+}
+
 
 .panel-heading {
   padding: 10px 15px;
